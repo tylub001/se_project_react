@@ -1,0 +1,51 @@
+.footer {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 171px;
+}
+
+.footer__name {
+  margin: 0;
+}
+
+.footer__year {
+  margin: 0;
+  padding-right: 2px;
+}
+
+.footer__button {
+  visibility: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .footer__button {
+    visibility: visible;
+    padding: 12px;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  .footer__icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .footer__container {
+    padding-top: 83px;
+  }
+}

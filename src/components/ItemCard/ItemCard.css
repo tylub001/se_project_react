@@ -1,9 +1,11 @@
 .card__image {
-  width: 100%;
   border-radius: 20px;
   height: 328px;
   border: 1px solid rgba(0, 0, 0, 0.3);
+  object-fit: cover;
+  max-width: 323px;
   width: 100%;
+  cursor: pointer;
 }
 
 .card__container {
@@ -16,9 +18,11 @@
   padding: 0;
   margin: 0;
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 20px;
+  grid-template-columns: repeat(auto-fit, 325px);
+  justify-content: center;
+  
 }
 
 .card__name {
@@ -34,25 +38,25 @@
   transform: translateX(-50%);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 717px) {
   .card__image {
-    height: 164px;
+    border-radius: 20px;
+    height: 163px;
+    max-width: 163px;
+    
   }
-
+  
+  .card__container {
+   
+    width: 163px;
+  }
+  
   .cards__list {
     row-gap: 16px;
     column-gap: 15px;
+    grid-template-columns: repeat(auto-fit, 165px);
+   
   }
 
-  .card__name {
-    position: absolute;
-    left: 50%;
-    top: 7px;
-    transform: translateX(-50%);
-    text-align: center;
-  }
 
-  .card__container {
-    width: 164px;
-  }
 }
