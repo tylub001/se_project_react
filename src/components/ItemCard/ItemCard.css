@@ -45,10 +45,13 @@
     max-width: 163px;
     
   }
+
+  .card__name {
+    top: 7px;
+  }
   
   .card__container {
-   
-    width: 163px;
+   width: 163px;
   }
   
   .cards__list {

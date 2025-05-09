@@ -2,8 +2,6 @@
   display: flex;
   align-items: center;
   padding: 32px 0 28px;
- 
- 
 }
 
 .header__add-clothes-btn {
@@ -34,58 +32,137 @@
   margin-right: 24px;
 }
 
-.header__corner-btn {
-    visibility: hidden;
-    position: absolute;
-    border: none;
-   
+.header__hamburger {
+  font-size: 24px;
+  background: none;
+  border: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  visibility: hidden;
+  padding: 0;
+  transition: transform 0.2s ease-in-out;
+}
 
+.header__hamburger:hover {
+  transform: scale(1.1);
+}
+
+.header__hamburger.hidden {
+  display: none;
+}
+
+.menu__close-btn,
+.menu__list {
+  visibility: hidden;
+  display: none;
 }
 
 @media screen and (max-width: 768px) {
   .header {
-   justify-content: flex-start;
-   align-items: flex-start;
-   line-height: 1;
-   flex-direction: column;
-   padding: 0;
-   height: 104px;
-  
-
-  }
-
-  
-
-  .header__corner-btn {
-    width: 44px;
-    visibility: visible;
-    top:18px;
-    right:16px;
-    cursor: pointer;
+    justify-content: flex-start;
+    align-items: flex-start;
+    line-height: 1;
+    flex-direction: column;
     padding: 0;
-
+    height: 104px;
   }
 
   .header__date-and-location {
     align-self: auto;
     line-height: 24px;
     padding-top: 34px;
-  
   }
 
+  .header__user-container,
   .header__add-clothes-btn {
-    visibility: hidden;
+    display: none;
   }
 
-  .header__avatar {
-    visibility: hidden;
+  .header__hamburger {
+    visibility: visible;
+    cursor: pointer;
   }
 
-  .header__ursername {
-    visibility: hidden;
+  .menu__container {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    flex-wrap: wrap;
+    border-radius: 12px;
   }
 
-  
+  .menu__username {
+    margin-top: 50px;
+    margin-bottom: 24px;
+  }
 
- 
+  .menu__avatar {
+    position: relative;
+    top: 12px;
+  }
+
+  .menu__close-btn {
+    position: relative;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    display: block;
+    visibility: visible;
+    top: 10px;
+    left: 89%;
+  }
+
+  .header__mobile-menu {
+    position: absolute;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 0;
+    top: -100%;
+    width: 100%;
+    height: 208px;
+    background: white;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    border-radius: 12px;
+    border-start-end-radius: 12px;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  .header__mobile-menu_opened {
+    top: 0;
+    left: 0;
+    opacity: 1;
+    display: block;
+    margin: 0;
+  }
+
+  .menu__list {
+    list-style: none;
+    visibility: visible;
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .menu__add-clothes-btn {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    display: block;
+    justify-self: center;
+  }
 }

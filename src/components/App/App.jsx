@@ -15,10 +15,27 @@ function App() {
     temp: { F: 999 },
     city: "",
   });
-  const [activeModal, setActiveModal] = useState("preview");
+  const [activeModal, setActiveModal] = useState({});
   const [selectedCard, setSelectedCard] = useState({});
 
-  const handleCardClick = (card) => {
+  const closeActiveModal = (event) => {
+    setActiveModal("");
+    if (event?.key === "Escape") {
+      setActiveModal(""); 
+    }
+    if (event?.target.classList.contains("modal_opened")) {
+      setActiveModal("");
+    }
+  };
+  
+ useEffect(() => {
+    const handleKeyPress = (event) => closeActiveModal(event);
+  
+    document.addEventListener("keydown", handleKeyPress);
+    return () => document.removeEventListener("keydown", handleKeyPress);
+  }, []);
+
+const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
   };
@@ -27,11 +44,7 @@ function App() {
     setActiveModal("add-garment");
   };
 
-  const closeActiveModal = () => {
-    setActiveModal("");
-  };
-
-  useEffect(() => {
+ useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
        const filteredData = filterWeatherData(data);
@@ -47,7 +60,7 @@ function App() {
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
         <Footer />
       </div>
-      <ModalWithForm
+      <ModalWithForm 
         title="New garment"
         buttonText="Add garment"
         activeModal={activeModal}
@@ -89,6 +102,7 @@ function App() {
             <input id="cold" type="radio" className="modal__radio-input" /> Cold
           </label>
         </fieldset>
+       
       </ModalWithForm>
       <ItemModal
         activeModal={activeModal}
