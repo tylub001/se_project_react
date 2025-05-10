@@ -116,7 +116,12 @@
     display: block;
     visibility: visible;
     top: 10px;
-    left: 89%;
+    left: 87%;
+  }
+
+  .header__mobile-menu.header__mobile-menu_opened {
+    margin: 10px;
+    width: calc(100% - 20px);
   }
 
   .header__mobile-menu {
