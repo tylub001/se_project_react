@@ -1,18 +1,16 @@
-import { useState } from "react";
+
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.svg";
 import cornerbutton from "../../assets/cornerbutton.svg";
-
 import closeDark from "../../assets/closeDark.svg";
 
-function Header({ handleAddClick, weatherData }) {
-  const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpened((prevState) => !prevState);
-  };
-
+function Header({
+  handleAddClick,
+  weatherData,
+  toggleMobileMenu,
+  isMobileMenuOpened,
+}) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -44,12 +42,10 @@ function Header({ handleAddClick, weatherData }) {
           <div className=" menu__container">
             <p className="menu__username">Terrence Tegegne</p>
             <img src={avatar} alt="Terrence Tegegne" className="menu__avatar" />
-           
           </div>
 
           <li>
-          
-          <button
+            <button
               onClick={handleAddClick}
               type="button"
               className="menu__add-clothes-btn"

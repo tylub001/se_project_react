@@ -17,25 +17,33 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState({});
   const [selectedCard, setSelectedCard] = useState({});
+  const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpened((prevState) => !prevState);
+  };
 
   const closeActiveModal = (event) => {
     setActiveModal("");
     if (event?.key === "Escape") {
-      setActiveModal(""); 
+      setActiveModal("");
     }
     if (event?.target.classList.contains("modal_opened")) {
       setActiveModal("");
     }
   };
-  
- useEffect(() => {
-    const handleKeyPress = (event) => closeActiveModal(event);
-  
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === "Escape") { 
+        closeActiveModal(event);
+      }
+    };
     document.addEventListener("keydown", handleKeyPress);
     return () => document.removeEventListener("keydown", handleKeyPress);
   }, []);
 
-const handleCardClick = (card) => {
+  const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
   };
@@ -44,11 +52,11 @@ const handleCardClick = (card) => {
     setActiveModal("add-garment");
   };
 
- useEffect(() => {
+  useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
-       const filteredData = filterWeatherData(data);
-       setWeatherData(filteredData);
+        const filteredData = filterWeatherData(data);
+        setWeatherData(filteredData);
       })
       .catch(console.error);
   }, []);
@@ -56,11 +64,16 @@ const handleCardClick = (card) => {
   return (
     <div className="page">
       <div className="page__content">
-        <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+        <Header
+          handleAddClick={handleAddClick}
+          weatherData={weatherData}
+          toggleMobileMenu={toggleMobileMenu}
+          isMobileMenuOpened={isMobileMenuOpened}
+        />
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
         <Footer />
       </div>
-      <ModalWithForm 
+      <ModalWithForm
         title="New garment"
         buttonText="Add garment"
         activeModal={activeModal}
@@ -102,7 +115,6 @@ const handleCardClick = (card) => {
             <input id="cold" type="radio" className="modal__radio-input" /> Cold
           </label>
         </fieldset>
-       
       </ModalWithForm>
       <ItemModal
         activeModal={activeModal}
