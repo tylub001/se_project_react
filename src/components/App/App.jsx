@@ -19,9 +19,30 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
 
-  const toggleMobileMenu = () => {
+  const useWindowWidth = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return windowWidth;
+};
+const windowWidth = useWindowWidth(); 
+  const isSmallScreen = windowWidth < 768;
+
+const toggleMobileMenu = () => {
     setIsMobileMenuOpened((prevState) => !prevState);
   };
+
+   useEffect(() => {
+    if (windowWidth >= 768 && isMobileMenuOpened) {
+      setIsMobileMenuOpened(false);
+    }
+  }, [windowWidth, isMobileMenuOpened]);
+
 
   const closeActiveModal = (event) => {
     setActiveModal("");
@@ -35,7 +56,7 @@ function App() {
 
   useEffect(() => {
     const handleKeyPress = (event) => {
-      if (event.key === "Escape") { 
+      if (event.key === "Escape") {
         closeActiveModal(event);
       }
     };
@@ -55,7 +76,10 @@ function App() {
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
+        console.log(data);
+       
         const filteredData = filterWeatherData(data);
+         console.log(filteredData)
         setWeatherData(filteredData);
       })
       .catch(console.error);
@@ -69,8 +93,14 @@ function App() {
           weatherData={weatherData}
           toggleMobileMenu={toggleMobileMenu}
           isMobileMenuOpened={isMobileMenuOpened}
+           isSmallScreen={isSmallScreen}
         />
-        <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+        <Main
+          weatherData={weatherData}
+          handleCardClick={handleCardClick}
+          isMobileMenuOpened={isMobileMenuOpened}
+          isSmallScreen={isSmallScreen}
+        />
         <Footer />
       </div>
       <ModalWithForm

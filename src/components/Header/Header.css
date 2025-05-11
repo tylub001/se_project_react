@@ -4,6 +4,7 @@
   padding: 32px 0 28px;
 }
 
+
 .header__add-clothes-btn {
   margin: 0 20px 0 auto;
   border: none;
@@ -51,6 +52,8 @@
 .header__hamburger.hidden {
   display: none;
 }
+
+
 
 .menu__close-btn,
 .menu__list {
@@ -116,12 +119,21 @@
     display: block;
     visibility: visible;
     top: 10px;
-    left: 87%;
+    left: 92%;
+    padding: 0;
+  }
+
+  .menu__close-icon {
+    width: 16px;
+    
   }
 
   .header__mobile-menu.header__mobile-menu_opened {
     margin: 10px;
     width: calc(100% - 20px);
+    z-index: 4;
+    
+
   }
 
   .header__mobile-menu {
@@ -138,7 +150,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1;
+   
     border-radius: 12px;
     border-start-end-radius: 12px;
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1);

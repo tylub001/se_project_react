@@ -16,10 +16,11 @@ function Header({
     day: "numeric",
   });
 
+
   return (
     <header className="header">
-      <img src={logo} alt="logo" className="header__logo" />
-      <p className="header__date-and-location">
+      <img src={logo} alt="logo" className={`header__logo ${isMobileMenuOpened ? "hidden" : ""}`} />
+      <p className={`header__date-and-location ${isMobileMenuOpened ? "hidden" : ""}`}>
         {currentDate}, {weatherData.city}
       </p>
 
@@ -36,7 +37,7 @@ function Header({
         }`}
       >
         <button className="menu__close-btn" onClick={toggleMobileMenu}>
-          <img src={closeDark} alt="close" />
+          <img className= "menu__close-icon" src={closeDark} alt="close" />
         </button>
         <ul className="menu__list">
           <div className=" menu__container">

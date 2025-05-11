@@ -5,6 +5,13 @@
    overflow: hidden;
    display: flex;
 }
+
+.hidden {
+   visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .weather-card__temp {
     font-size: 36px;
     line-height: 40px;

@@ -3,6 +3,7 @@
   font-family: 'Cabinet Grotesk';
   font-size: 20px;
   font-weight: 700;
+  min-height: 100vh;
 }
 
 .page__content {
