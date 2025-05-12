@@ -14,7 +14,7 @@
 }
 
 .modal__close_type_form {
-  background-image: url("src/assets/modalclosebtnwhite.svg");
+  background-image: url(../../assets/modalclosebtnwhite.svg);
 }
 
 .modal__footer {
