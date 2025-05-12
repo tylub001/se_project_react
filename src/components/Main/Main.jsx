@@ -1,9 +1,9 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import "./Main.css";
-import { defaultClothingItems } from "../../utils/constants";
 
-function Main({ weatherData, handleCardClick, isMobileMenuOpened, isSmallScreen }) {
+
+function Main({ weatherData, handleCardClick, isMobileMenuOpened, isSmallScreen, clothingItems }) {
   return (
     <main>
      <div className={`weather-card ${isMobileMenuOpened && isSmallScreen ? "hidden" : ""}`}>
@@ -14,7 +14,7 @@ function Main({ weatherData, handleCardClick, isMobileMenuOpened, isSmallScreen 
            Today is {weatherData.temp.F} &deg; F/ You may want to wear:{" "}
         </p>
         <ul className="cards__list">
-          {defaultClothingItems
+          {clothingItems
             .filter((item) => {
             return item.weather === weatherData.type;
             })

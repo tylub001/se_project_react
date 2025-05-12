@@ -13,8 +13,8 @@
   display: block;
 }
 
-.modal__close {
-  z-index: 1;
+.modal__close_type_form {
+  background-image: url("src/assets/modalclosebtnwhite.svg");
 }
 
 .modal__footer {
@@ -64,5 +64,11 @@
 
   .modal__caption {
     padding-bottom: 12px;
+  }
+
+  .modal__close {
+    background-image: url("src/assets/closeDark.svg");
+    top: 16px;
+    right: 16px;
   }
 }

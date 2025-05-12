@@ -1,4 +1,3 @@
-
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.svg";
@@ -16,11 +15,18 @@ function Header({
     day: "numeric",
   });
 
-
   return (
     <header className="header">
-      <img src={logo} alt="logo" className={`header__logo ${isMobileMenuOpened ? "hidden" : ""}`} />
-      <p className={`header__date-and-location ${isMobileMenuOpened ? "hidden" : ""}`}>
+      <img
+        src={logo}
+        alt="logo"
+        className={`header__logo ${isMobileMenuOpened ? "hidden" : ""}`}
+      />
+      <p
+        className={`header__date-and-location ${
+          isMobileMenuOpened ? "hidden" : ""
+        }`}
+      >
         {currentDate}, {weatherData.city}
       </p>
 
@@ -37,13 +43,13 @@ function Header({
         }`}
       >
         <button className="menu__close-btn" onClick={toggleMobileMenu}>
-          <img className= "menu__close-icon" src={closeDark} alt="close" />
+          <img className="menu__close-icon" src={closeDark} alt="close" />
         </button>
         <ul className="menu__list">
-          <div className=" menu__container">
+          <li className=" menu__container">
             <p className="menu__username">Terrence Tegegne</p>
             <img src={avatar} alt="Terrence Tegegne" className="menu__avatar" />
-          </div>
+          </li>
 
           <li>
             <button
@@ -64,7 +70,7 @@ function Header({
         + Add clothes
       </button>
       <div className="header__user-container">
-        <p className="header__ursername">Terrence Tegegne</p>
+        <p className="header__username">Terrence Tegegne</p>
         <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
       </div>
     </header>

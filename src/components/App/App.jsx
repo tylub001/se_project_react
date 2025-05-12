@@ -8,6 +8,7 @@ import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
+import { defaultClothingItems } from "../../utils/constants";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -18,31 +19,31 @@ function App() {
   const [activeModal, setActiveModal] = useState({});
   const [selectedCard, setSelectedCard] = useState({});
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
 
   const useWindowWidth = () => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    useEffect(() => {
+      const handleResize = () => setWindowWidth(window.innerWidth);
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
-  return windowWidth;
-};
-const windowWidth = useWindowWidth(); 
+    return windowWidth;
+  };
+  const windowWidth = useWindowWidth();
   const isSmallScreen = windowWidth < 768;
 
-const toggleMobileMenu = () => {
+  const toggleMobileMenu = () => {
     setIsMobileMenuOpened((prevState) => !prevState);
   };
 
-   useEffect(() => {
+  useEffect(() => {
     if (windowWidth >= 768 && isMobileMenuOpened) {
       setIsMobileMenuOpened(false);
     }
   }, [windowWidth, isMobileMenuOpened]);
-
 
   const closeActiveModal = (event) => {
     setActiveModal("");
@@ -77,9 +78,9 @@ const toggleMobileMenu = () => {
     getWeather(coordinates, APIkey)
       .then((data) => {
         console.log(data);
-       
+
         const filteredData = filterWeatherData(data);
-         console.log(filteredData)
+        console.log(filteredData);
         setWeatherData(filteredData);
       })
       .catch(console.error);
@@ -93,25 +94,27 @@ const toggleMobileMenu = () => {
           weatherData={weatherData}
           toggleMobileMenu={toggleMobileMenu}
           isMobileMenuOpened={isMobileMenuOpened}
-           isSmallScreen={isSmallScreen}
+          isSmallScreen={isSmallScreen}
         />
         <Main
           weatherData={weatherData}
           handleCardClick={handleCardClick}
           isMobileMenuOpened={isMobileMenuOpened}
           isSmallScreen={isSmallScreen}
+          clothingItems={clothingItems}
         />
         <Footer />
       </div>
       <ModalWithForm
         title="New garment"
         buttonText="Add garment"
-        activeModal={activeModal}
+        isOpen={activeModal === "add-garment"}
         onClose={closeActiveModal}
       >
         <label htmlFor="name" className="modal__label">
           Name{" "}
           <input
+            name="weather"
             type="text"
             className="modal__input"
             id="name"
@@ -121,6 +124,7 @@ const toggleMobileMenu = () => {
         <label htmlFor="imageUrl" className="modal__label">
           Image{" "}
           <input
+            name="weather"
             type="url"
             className="modal__input"
             id="imageUrl"
@@ -142,7 +146,13 @@ const toggleMobileMenu = () => {
             htmlFor="cold"
             className="modal__label modal__label_type_radio"
           >
-            <input id="cold" type="radio" className="modal__radio-input" /> Cold
+            <input
+              name="weather"
+              id="cold"
+              type="radio"
+              className="modal__radio-input"
+            />{" "}
+            Cold
           </label>
         </fieldset>
       </ModalWithForm>
