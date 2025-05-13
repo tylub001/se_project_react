@@ -67,7 +67,7 @@
   }
 
   .modal__close {
-    background-image: url("src/assets/closeDark.svg");
+    background-image: url(../../assets/closeDark.svg);
     top: 16px;
     right: 16px;
   }
