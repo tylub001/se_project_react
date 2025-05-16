@@ -8,7 +8,7 @@ function Footer() {
         <img src={randomize} alt="arrow icon" className="footer__icon" />
         Randomize
       </button>
-      <div className="footer__container">
+      <div className="footer__container footer__container_type_profile">
         <p className="footer__name">Developed by Brittany Tylutke</p>
         <p className="footer__year">2025</p>
       </div>

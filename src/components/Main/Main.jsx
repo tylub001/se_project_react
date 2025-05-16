@@ -1,22 +1,39 @@
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import "./Main.css";
+import { useContext } from "react";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
-
-function Main({ weatherData, handleCardClick, isMobileMenuOpened, isSmallScreen, clothingItems }) {
+function Main({
+  weatherData,
+  handleCardClick,
+  isMobileMenuOpened,
+  isSmallScreen,
+  clothingItems,
+}) {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  console.log(
+    "Clothing items filtered for weather:",
+    clothingItems.filter((item) => item.weather === weatherData.type)
+  );
   return (
     <main>
-     <div className={`weather-card ${isMobileMenuOpened && isSmallScreen ? "hidden" : ""}`}>
-      <WeatherCard weatherData={weatherData} />
+      <div
+        className={`weather-card ${
+          isMobileMenuOpened && isSmallScreen ? "hidden" : ""
+        }`}
+      >
+        <WeatherCard weatherData={weatherData} />
       </div>
       <section className="cards">
         <p className="cards__text">
-           Today is {weatherData.temp.F} &deg; F/ You may want to wear:{" "}
+          Today is {weatherData.temp[currentTemperatureUnit]}°
+          {[currentTemperatureUnit]}/ You may want to wear:{" "}
         </p>
         <ul className="cards__list">
           {clothingItems
             .filter((item) => {
-            return item.weather === weatherData.type;
+              return item.weather === weatherData.type;
             })
             .map((item) => {
               return (

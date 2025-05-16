@@ -2,11 +2,20 @@
   display: flex;
   align-items: center;
   padding: 32px 0 28px;
+ 
 }
 
+.header__link {
+  display: flex;
+  gap: 12px;
+  align-items: anchor-center;
+  text-decoration: none;
+  color: #000;
+
+}
 
 .header__add-clothes-btn {
-  margin: 0 20px 0 auto;
+ 
   border: none;
   background-color: transparent;
   border: none;
@@ -17,6 +26,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-left: auto;
 }
 
 .header__date-and-location {
@@ -53,8 +63,6 @@
   display: none;
 }
 
-
-
 .menu__close-btn,
 .menu__list {
   visibility: hidden;
@@ -69,6 +77,8 @@
     flex-direction: column;
     padding: 0;
     height: 104px;
+    
+    
   }
 
   .header__date-and-location {
@@ -125,15 +135,12 @@
 
   .menu__close-icon {
     width: 16px;
-    
   }
 
   .header__mobile-menu.header__mobile-menu_opened {
     margin: 10px;
     width: calc(100% - 20px);
     z-index: 4;
-    
-
   }
 
   .header__mobile-menu {
@@ -150,7 +157,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-   
+
     border-radius: 12px;
     border-start-end-radius: 12px;
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1);

@@ -64,12 +64,12 @@ export const weatherOptions = [
 
 ];
 
-export const defaultClothingItems = [
+/*export const defaultClothingItems = [
   {
     _id: 0,
     name: "Cap",
     weather: "hot",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Cap.png?etag=f3dad389b22909cafa73cff9f9a3d591",
+    link: "",
   },
   {
     _id: 1,
@@ -101,7 +101,7 @@ export const defaultClothingItems = [
     weather: "cold",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4",
   },
-];
+];*/
 
 export const coordinates = {
   latitude:  41.335869,

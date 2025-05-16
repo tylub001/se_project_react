@@ -30,5 +30,10 @@
 }
 
 @media screen and (max-width: 768px) {
-   
+   .weather-card {
+   height: 104px}
+
+   .header {
+    margin-bottom: 24px;
+   }
 }

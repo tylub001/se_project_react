@@ -13,13 +13,15 @@
   display: block;
 }
 
-.modal__close_type_form {
-  background-image: url(../../assets/modalclosebtnwhite.svg);
+.modal__close.modal__close_type_card {
+  background-image: url('../../assets/modalclosebtnwhite.svg');
 }
 
 .modal__footer {
   margin: 0;
   padding-left: 32px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .modal__caption {
@@ -31,6 +33,18 @@
 .modal__weather {
   margin: 0;
   margin-bottom: 32px;
+  padding-left: 32px;
+}
+
+.modal__delete-btn {
+  display: flex;
+margin: 20px 32px;
+padding: 0;
+  justify-self: end;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: #ff4d00
 }
 
 @media screen and (max-width: 768px) {
@@ -66,8 +80,8 @@
     padding-bottom: 12px;
   }
 
-  .modal__close {
-    background-image: url(../../assets/closeDark.svg);
+  .modal__close.modal__close_type_card {
+    background-image: url('../../assets/closeDark.svg');
     top: 16px;
     right: 16px;
   }

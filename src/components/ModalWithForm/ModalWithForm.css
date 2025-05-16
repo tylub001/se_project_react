@@ -157,4 +157,8 @@
   .modal__submit {
     width: 100%;
   }
+
+  .modal__close {
+  background-image: url(../../assets/closeDark.svg);
+}
 }

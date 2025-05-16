@@ -1,0 +1,44 @@
+.modal__content.modal__content_type_delete {
+    width: 670px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+}
+
+.modal__text {
+    margin: 0;
+    margin-top: 24px;
+    
+}
+.modal__sentence {
+    margin: 0;
+    margin-bottom: 40px
+}
+
+.modal__buttons {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.modal__yes-btn {
+    margin: 0;
+    margin-bottom: 24px;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: #ff4d00
+  
+}
+
+.modal__cancel-btn {
+margin-bottom: 24px;
+padding: 0;
+border: none;
+background-color: transparent;
+cursor: pointer;
+
+}
