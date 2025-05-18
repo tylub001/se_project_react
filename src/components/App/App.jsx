@@ -47,7 +47,7 @@ function App() {
         );
         setIsConfirmModalOpen(false);
         setCardToDelete(null);
-        setActiveModal("");
+        closeActiveModal();
       })
       .catch(console.error);
   };
@@ -92,9 +92,10 @@ function App() {
   };
 
   useEffect(() => {
+    if (!activeModal) return;
     document.addEventListener("keydown", closeActiveModal);
     return () => document.removeEventListener("keydown", closeActiveModal);
-  }, []);
+  }, [activeModal]);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -106,13 +107,9 @@ function App() {
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
-    addItem({ name, link: imageUrl, weather })
+    addItem({ name, imageUrl, weather })
       .then((item) => {
-        const normalizedItem = {
-          ...item,
-          imageUrl: imageUrl,
-        };
-        setClothingItems((prevItems) => [normalizedItem, ...prevItems]);
+        setClothingItems((prevItems) => [item, ...prevItems]);
         closeActiveModal();
       })
       .catch(console.error);

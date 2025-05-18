@@ -7,6 +7,7 @@ function ModalWithForm({
   isOpen,
   onClose,
   onSubmit,
+  isValid
 }) {
   const handleBackgroundClick = (event) => {
     if (event.target.classList.contains("modal_opened")) {
@@ -28,7 +29,7 @@ function ModalWithForm({
         ></button>
         <form onSubmit={onSubmit} className="modal__form">
           {children}
-          <button type="submit" className="modal__submit">
+          <button type="submit" className="modal__submit"  disabled={!isValid}>
             {buttonText}
           </button>
         </form>

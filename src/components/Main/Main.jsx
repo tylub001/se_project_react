@@ -12,10 +12,7 @@ function Main({
   clothingItems,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  console.log(
-    "Clothing items filtered for weather:",
-    clothingItems.filter((item) => item.weather === weatherData.type)
-  );
+
   return (
     <main>
       <div
