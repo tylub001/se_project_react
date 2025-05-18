@@ -167,6 +167,8 @@ function App() {
                   clothingItems={clothingItems}
                   onCardDelete={openConfirmationModal}
                   onAddItem={handleAddItemModalSubmit}
+                  isMobileMenuOpened={isMobileMenuOpened}
+                  toggleMobileMenu={toggleMobileMenu}
                 />
               }
             />

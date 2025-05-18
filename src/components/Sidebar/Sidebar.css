@@ -64,4 +64,12 @@
     height: 56px;
     width: 56px;
   }
+
+  .sidebar__container.hidden {
+    visibility: hidden;
+  }
+
+  .sidebar__container.visible {
+    display: block;
+  }
 }
