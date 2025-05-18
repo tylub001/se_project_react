@@ -67,9 +67,9 @@
       "_id": 16
     },
     {
-      "name": "Hat",
+      "name": "dd",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Cap.png?etag=f3dad389b22909cafa73cff9f9a3d591",
-      "weather": "cold",
+      "weather": "warm",
       "_id": 17
     }
   ]

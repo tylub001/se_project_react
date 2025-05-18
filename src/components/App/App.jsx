@@ -169,6 +169,8 @@ function App() {
                   onAddItem={handleAddItemModalSubmit}
                   isMobileMenuOpened={isMobileMenuOpened}
                   toggleMobileMenu={toggleMobileMenu}
+                  handleAddClick={handleAddClick}
+                 
                 />
               }
             />

@@ -1,4 +1,3 @@
-
 import ClothesSection from "../ClothesSection/ClothesSection";
 import Sidebar from "../Sidebar/Sidebar";
 import "./Profile.css";
@@ -9,9 +8,9 @@ export default function Profile({
   onCardDelete,
   isMobileMenuOpened,
   toggleMobileMenu,
+   handleAddClick,
+  
 }) {
-
-
   return (
     <div className="profile">
       <section className="profile__sidebar">
@@ -26,6 +25,7 @@ export default function Profile({
           clothingItems={clothingItems}
           onCardClick={onCardClick}
           onCardDelete={onCardDelete}
+          handleAddClick={handleAddClick}
         />
       </section>
     </div>
