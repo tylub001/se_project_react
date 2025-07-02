@@ -1,24 +1,42 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
-import avatar from "../../assets/avatar.svg";
 import cornerbutton from "../../assets/cornerbutton.svg";
 import closeDark from "../../assets/closeDark.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Header({
   handleAddClick,
   weatherData,
   toggleMobileMenu,
   isMobileMenuOpened,
+  isLoggedIn,
+  onLoginClick,
+  onSignupClick,
 }) {
+  const currentUser = useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
+  const renderAvatar = () => {
+    if (currentUser?.avatar) {
+      return (
+        <img
+          src={currentUser.avatar}
+          alt={currentUser.name}
+          className="header__avatar"
+        />
+      );
+    }
+    const firstLetter = currentUser?.name?.charAt(0).toUpperCase() || "?";
+    return <div className="header__avatar-placeholder">{firstLetter}</div>;
+  };
+
   return (
-    
     <header className="header header__type_profile">
       <Link to="/">
         <img
@@ -52,39 +70,67 @@ function Header({
           <img className="menu__close-icon" src={closeDark} alt="close" />
         </button>
         <ul className="menu__list">
-          <li className=" menu__container">
-            <p className="menu__username">Terrence Tegegne</p>
-            <img src={avatar} alt="Terrence Tegegne" className="menu__avatar" />
-          </li>
-
+          {isLoggedIn && (
+            <>
+              <li className="menu__container">
+                <p className="menu__username">{currentUser?.name}</p>
+                {renderAvatar()}
+              </li>
+              <li>
+                <button
+                  onClick={handleAddClick}
+                  type="button"
+                  className="menu__add-clothes-btn"
+                >
+                  + Add clothes
+                </button>
+              </li>
+            </>
+          )}
           <li>
+            <div className="profile__toggleswitch">
+              <ToggleSwitch />
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <div className="header__user-container">
+        <ToggleSwitch />
+        {isLoggedIn ? (
+          <>
             <button
               onClick={handleAddClick}
               type="button"
-              className="menu__add-clothes-btn"
+              className="header__add-clothes-btn"
             >
               + Add clothes
             </button>
-          </li>
-
-          <div className="profile__toggleswitch">
-            <ToggleSwitch />
-          </div>
-        </ul>
-      </nav>
-      <div className="header__user-container">
-        <ToggleSwitch />
-        <button
-          onClick={handleAddClick}
-          type="button"
-          className="header__add-clothes-btn"
-        >
-          + Add clothes
-        </button>
-        <Link to="/profile" className="header__link">
-          <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
-          <p className="header__username">Terrence Tegegne</p>
-        </Link>
+            <Link to="/profile" className="header__link">
+              {currentUser?.avatar ? (
+                <img
+                  src={currentUser.avatar}
+                  alt={currentUser.name}
+                  className="header__avatar"
+                />
+              ) : (
+                <div className="header__avatar-placeholder">
+                  {currentUser?.name?.charAt(0).toUpperCase() || "?"}
+                </div>
+              )}
+              <p className="header__username">{currentUser?.name}</p>
+            </Link>
+          </>
+        ) : (
+          <>
+            <button className="header__signup-btn" onClick={onSignupClick}>
+              Sign Up
+            </button>
+            <button className="header__login-btn" onClick={onLoginClick}>
+              Log In
+            </button>
+          </>
+        )}
       </div>
     </header>
   );

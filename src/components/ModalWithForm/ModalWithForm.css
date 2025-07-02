@@ -94,6 +94,12 @@
 .modal__label_type_radio {
   margin: 0;
   margin-bottom: 8px;
+  color: #000;
+  opacity: 0.5;
+}
+
+.modal__label_type_radio:has(input[type="radio"]:checked) {
+  opacity: 1;
 }
 
 .modal__submit {
@@ -109,11 +115,12 @@
 }
 
 .modal__submit:hover {
-  background-color: #00000099;
+  background-color: #000000;
+
 }
 
 .modal__submit:disabled {
-  background-color: #0000003d;
+  opacity: 0.5;
 }
 
 .modal__fieldset {
@@ -124,8 +131,8 @@
   appearance: none;
   width: 16px;
   height: 16px;
-  border: 1px solid black;
-  border-radius: 50%;
+  border: 1px solid #000;
+border-radius: 50%;
   background: transparent;
   cursor: pointer;
   margin-right: 8px;
@@ -159,6 +166,6 @@
   }
 
   .modal__close {
-  background-image: url(../../assets/closeDark.svg);
-}
+    background-image: url(../../assets/closeDark.svg);
+  }
 }

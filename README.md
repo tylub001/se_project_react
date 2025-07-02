@@ -1,8 +1,8 @@
 
-# Project 10: Climatrix 
+# Project 10: WDWR 
 
 **Description:**
-Climatrix is a simple, cross-platform weather app that dynamically displays the current weather using live API data. Built with React and JavaScript, and styled with CSS, Climatrix provides real-time, location-based weather updates, complete with fun visuals, a smooth user interface, and accurate time-of-day adaptation.
+WDWR is a simple, cross-platform weather app that dynamically displays the current weather using live API data. Built with React and JavaScript, and styled with CSS, Climatrix provides real-time, location-based weather updates, complete with fun visuals, a smooth user interface, and accurate time-of-day adaptation.
 
 ## Project Features
 - Live Weather Updates – Uses an API to fetch current weather conditions 
@@ -32,3 +32,11 @@ Now you can use Climatrix to check the weather!
 ![Images](./readme-images/main2.png)
 ![Images](./readme-images/phone.png)
 ![Images](./readme-images/phone2.png)
+![Images](./readme-images/mainFinal.png)
+![Images](./readme-images/profileFinal.png)
+
+
+### Backend Repository
+
+This project uses the backend built in Project 13: 
+[se_project_express](https://github.com/tylub001/se_project_express.git)

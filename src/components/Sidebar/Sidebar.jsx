@@ -1,7 +1,15 @@
 import "./Sidebar.css";
-import avatar from "../../assets/avatar.svg";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-export default function Sidebar({ isMobileMenuOpened }) {
+
+
+export default function Sidebar({
+  isMobileMenuOpened,
+  onEditProfileClick,
+  onSignOut,
+}) {
+  const currentUser = useContext(CurrentUserContext);
   return (
     <div
       className={`sidebar__container ${
@@ -10,12 +18,17 @@ export default function Sidebar({ isMobileMenuOpened }) {
     >
       <hr className="sidebar__divider" />
       <div className="sidebar">
-        <img className="sidebar__avatar" src={avatar} alt="Terrence Tegegne" />
-        <p className="sidebar__username">User Name</p>
+        <img
+          className="sidebar__avatar"
+          src={currentUser?.avatar}
+          alt={currentUser?.name || "User Avatar"}
+        />
+        <p className="sidebar__username">{currentUser?.name || "User"}</p>
       </div>
       <div className="sidebar__profile-data">
-        <p className="sidebar__sentence">Change profile data</p>
-        <p className="sidebar__logout">Log out</p>
+      
+        <button className='sidebar__edit-btn' type='button' onClick={onEditProfileClick}>Change profile data</button>
+        <button className='sidebar__signout-btn' type='button' onClick={onSignOut}>Log out</button>
       </div>
     </div>
   );

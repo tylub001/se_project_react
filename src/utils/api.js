@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3001';
+const baseUrl = "http://localhost:3001";
 
 function checkResponse(res) {
   if (res.ok) {
@@ -12,34 +12,87 @@ function request(url, options) {
 }
 
 function getItems() {
-  return request(`${baseUrl}/items`)
-    .then(data => {
-      return data.map(item => ({
-        ...item,
-        imageUrl: item.imageUrl,
-      }));
-    });
+  return request(`${baseUrl}/items`).then((data) => {
+    return data.map((item) => ({
+      ...item,
+      imageUrl: item.imageUrl,
+    }));
+  });
 }
 
-
-function addItem({ name, imageUrl, weather }) {
+function addItem({ name, imageUrl, weather }, token) {
   return request(`${baseUrl}/items`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
-     body: JSON.stringify({ name, imageUrl, weather }),
+    body: JSON.stringify({ name, imageUrl, weather }),
   }).then((item) => {
     return item;
   });
 }
 
-function deleteItem(id) {
+function deleteItem(id, token) {
   return request(`${baseUrl}/items/${id}`, {
-    method: 'DELETE',
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
 }
 
-export { getItems, addItem, deleteItem, checkResponse };
+function editProfile({ name, avatar }, token) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkResponse);
+}
 
+function getUserInfo(token) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  }).then((res) => {
+    if (res.ok) return res.json();
+    return Promise.reject(`Error: ${res.status}`);
+  });
+}
 
+function addCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+};
+
+function removeCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+};
+
+export {
+  getItems,
+  addItem,
+  deleteItem,
+  checkResponse,
+  editProfile,
+  getUserInfo,
+  addCardLike,
+  removeCardLike,
+};

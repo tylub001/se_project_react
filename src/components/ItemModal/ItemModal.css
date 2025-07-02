@@ -14,10 +14,10 @@
 }
 
 .modal__close.modal__close_type_card {
-  background-image: url('../../assets/modalclosebtnwhite.svg');
+  background-image: url("../../assets/modalclosebtnwhite.svg");
 }
 
-.modal__footer {
+.modal__footer_type_card {
   margin: 0;
   padding-left: 32px;
   display: flex;
@@ -38,13 +38,13 @@
 
 .modal__delete-btn {
   display: flex;
-margin: 20px 32px;
-padding: 0;
+  margin: 20px 32px;
+  padding: 0;
   justify-self: end;
   border: none;
   background-color: transparent;
   cursor: pointer;
-  color: #ff4d00
+  color: #ff4d00;
 }
 
 @media screen and (max-width: 768px) {
@@ -81,7 +81,7 @@ padding: 0;
   }
 
   .modal__close.modal__close_type_card {
-    background-image: url('../../assets/closeDark.svg');
+    background-image: url("../../assets/closeDark.svg");
     top: 16px;
     right: 16px;
   }

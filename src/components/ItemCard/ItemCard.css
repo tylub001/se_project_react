@@ -25,18 +25,39 @@
   
 }
 
-.card__name {
-  margin: 0;
-  padding: 2px 12px;
-  background-color: #fff;
-  border-radius: 4px;
-  font-size: 16px;
-  color: rgba(0, 0, 0, 0.6);
+.card__label-wrapper {
   position: absolute;
-  left: 50%;
   top: 15px;
+  left: 50%;
   transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
+
+.card__name {
+  background-color: white;
+  padding: 2px 12px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 16px;
+  color: #222;
+}
+
+.card__heart-icon {
+  width: 18px;
+  height: 15px;
+  background-image: url('../../assets/likeBtnDefault.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.card__heart-icon_liked {
+  background-image: url('../../assets/likeBtnLiked.svg');
+}
+
 
 @media screen and (max-width: 717px) {
   .card__image {

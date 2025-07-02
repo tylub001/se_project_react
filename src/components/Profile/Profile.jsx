@@ -8,8 +8,11 @@ export default function Profile({
   onCardDelete,
   isMobileMenuOpened,
   toggleMobileMenu,
-   handleAddClick,
-  
+  handleAddClick,
+  onEditProfileClick,
+  onSignOut,
+  handleCardLike,
+  isLoggedIn,
 }) {
   return (
     <div className="profile">
@@ -17,6 +20,8 @@ export default function Profile({
         <Sidebar
           toggleMobileMenu={toggleMobileMenu}
           isMobileMenuOpened={isMobileMenuOpened}
+          onEditProfileClick={onEditProfileClick}
+          onSignOut={onSignOut}
         />
       </section>
 
@@ -26,6 +31,8 @@ export default function Profile({
           onCardClick={onCardClick}
           onCardDelete={onCardDelete}
           handleAddClick={handleAddClick}
+          handleCardLike={handleCardLike}
+          isLoggedIn={isLoggedIn}
         />
       </section>
     </div>

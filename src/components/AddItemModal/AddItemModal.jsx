@@ -8,13 +8,12 @@ export default function AddItemModal({
   isOpen,
   onAddItemModalSubmit,
 }) {
-  
   const { values, handleChange, errors, isValid, resetForm } =
     useFormAndValidation();
 
   useEffect(() => {
     if (isOpen) {
-     resetForm({ name: "", imageUrl: "", weather: "" }, {}, false);
+      resetForm({ name: "", imageUrl: "", weather: "" }, {}, false);
     }
   }, [isOpen]);
 
@@ -23,6 +22,11 @@ export default function AddItemModal({
     if (!values.weather) return;
     onAddItemModalSubmit(values);
   };
+
+  const isFormComplete =
+    values.name.trim() !== "" &&
+    values.imageUrl.trim() !== "" &&
+    values.weather.trim() !== "";
 
   return (
     <ModalWithForm
@@ -64,7 +68,9 @@ export default function AddItemModal({
         )}
       </label>
       <fieldset className="modal__radio-btns">
-        {errors.weather && <span className="modal__error">{errors.weather}</span>}
+        {errors.weather && (
+          <span className="modal__error">{errors.weather}</span>
+        )}
         <legend className="modal__legend">Select the weather type:</legend>
         <label htmlFor="hot" className="modal__label modal__label_type_radio">
           <input
@@ -104,6 +110,14 @@ export default function AddItemModal({
           Cold
         </label>
       </fieldset>
+
+      <button
+        type="submit"
+        className="modal__button modal__button_type_add"
+        disabled={!isFormComplete}
+      >
+        Add garment
+      </button>
     </ModalWithForm>
   );
 }
