@@ -151,6 +151,11 @@ border-radius: 50%;
   transform: translate(-50%, -50%);
 }
 
+.modal__action-wrapper {
+  display: flex;
+  align-items: flex-end;
+}
+
 @media screen and (max-width: 768px) {
   .modal {
     align-items: flex-end;

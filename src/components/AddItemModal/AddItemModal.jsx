@@ -35,7 +35,7 @@ export default function AddItemModal({
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      isValid={isValid}
+      isValid={isFormComplete}
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}
@@ -110,14 +110,6 @@ export default function AddItemModal({
           Cold
         </label>
       </fieldset>
-
-      <button
-        type="submit"
-        className="modal__button modal__button_type_add"
-        disabled={!isFormComplete}
-      >
-        Add garment
-      </button>
     </ModalWithForm>
   );
 }

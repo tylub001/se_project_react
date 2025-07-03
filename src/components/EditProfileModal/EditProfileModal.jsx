@@ -6,25 +6,22 @@ function EditProfileModal({ isOpen, onClose, onEditProfile, currentUser }) {
   const [values, setValues] = useState({ name: "", avatar: "" });
 
   useEffect(() => {
-    if (currentUser && isOpen) {
-      setValues({
-        name: currentUser.name || "",
-        avatar: currentUser.avatar || "",
-      });
-    }
-  }, [currentUser, isOpen]);
+  if (isOpen) {
+    setValues({ name: "", avatar: "" }); 
+  }
+}, [isOpen]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+const handleSubmit = (e) => {
     e.preventDefault();
     onEditProfile(values);
   };
 
-const isFormValid = values.name.trim() !== "";
+  const isFormValid = values.name.trim() !== "";
 
   return (
     <ModalWithForm
@@ -34,6 +31,7 @@ const isFormValid = values.name.trim() !== "";
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      isValid={isFormValid}
     >
       <label className="modal__label">
         Name*
@@ -58,14 +56,6 @@ const isFormValid = values.name.trim() !== "";
           required
         />
       </label>
-
-      <button
-        type="submit"
-        className="modal__button_type_edit"
-        disabled={!isFormValid}
-      >
-        Save changes
-      </button>
     </ModalWithForm>
   );
 }

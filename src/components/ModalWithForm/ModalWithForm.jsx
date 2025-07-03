@@ -7,7 +7,8 @@ function ModalWithForm({
   isOpen,
   onClose,
   onSubmit,
-  isValid
+  isValid,
+  extraAction
 }) {
   const handleBackgroundClick = (event) => {
     if (event.target.classList.contains("modal_opened")) {
@@ -29,9 +30,12 @@ function ModalWithForm({
         ></button>
         <form onSubmit={onSubmit} className="modal__form">
           {children}
-          <button type="submit" className="modal__submit"  disabled={!isValid} >
-            {buttonText}
-          </button>
+          <div className="modal__action-wrapper">
+            <button type="submit" className="modal__submit" disabled={!isValid}>
+              {buttonText}
+            </button>
+            {extraAction && <div className="modal__alt-action">{extraAction}</div>}
+          </div>
         </form>
       </div>
     </div>

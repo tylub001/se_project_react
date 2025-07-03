@@ -2,12 +2,3 @@
   color: red;
 }
 
-.modal__button_type_add {
-  width: 30%;
-  margin-top: 24px;
-
-}
-
-.modal__button_type_add:disabled {
-  opacity: 0.5;
-}

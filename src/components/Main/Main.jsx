@@ -11,6 +11,7 @@ function Main({
   isSmallScreen,
   clothingItems,
   handleCardLike,
+  isLoggedIn
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
@@ -40,6 +41,7 @@ function Main({
                   item={item}
                   onCardClick={handleCardClick}
                   onCardLike={handleCardLike}
+                  isLoggedIn={isLoggedIn}
                 />
               );
             })}

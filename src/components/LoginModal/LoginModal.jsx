@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./LoginModal.css";
 
@@ -8,25 +8,43 @@ function LoginModal({
   onLogin,
   passwordError,
   setPasswordError,
+  onSignupClick,
 }) {
   const [values, setValues] = useState({ email: "", password: "" });
   const [isValid, setIsValid] = useState(false);
+  const [errors, setErrors] = useState({});
+ 
+
+  useEffect(() => {
+  if (isOpen) {
+    setValues({
+      email: "",
+      password: "",
+    });
+    setErrors({});
+    setIsValid(false);
+  }
+}, [isOpen]);
 
   const handleChange = (e) => {
     setPasswordError("");
-    const { name, value } = e.target;
+    const { name, value, validationMessage, validity } = e.target;
 
-    const newValues = { ...values, [name]: value }; 
+    const newValues = { ...values, [name]: value };
     setValues(newValues);
 
-    const formIsValid =
+     if (name === "email") {
+    setErrors((prev) => ({ ...prev, email: validationMessage }));
+  }
+
+    const isFormValid =
       newValues.email.trim() !== "" && newValues.password.trim() !== "";
-    setIsValid(formIsValid);
+    setIsValid(isFormValid);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin(values); 
+    onLogin(values);
   };
 
   return (
@@ -37,6 +55,12 @@ function LoginModal({
       onClose={onClose}
       onSubmit={handleSubmit}
       buttonText="Log In"
+      extraAction={
+        <button type="button" className="modal__link" onClick={onSignupClick}>
+          or Register
+        </button>
+      }
+      isValid={isValid}
     >
       <label className="modal__label">
         Email*
@@ -49,6 +73,7 @@ function LoginModal({
           onChange={handleChange}
           required
         />
+         <span className="modal__error">{errors.email}</span>
       </label>
 
       <label
@@ -65,21 +90,6 @@ function LoginModal({
           required
         />
       </label>
-      <div className="modal__footer modal__footer_type_login">
-        <button
-          type="submit"
-          className={`modal__button ${
-            !isValid ? "modal__button_disabled" : ""
-          }`}
-          disabled={!isValid}
-        >
-          Log in
-        </button>
-
-        <button type="button" className="modal__link">
-          or Register
-        </button>
-      </div>
     </ModalWithForm>
   );
 }

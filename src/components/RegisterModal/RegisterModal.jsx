@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./RegisterModal.css";
 
-function RegisterModal({ isOpen, onClose, onRegister }) {
+function RegisterModal({ isOpen, onClose, onRegister, onLoginClick }) {
   const [values, setValues] = useState({
     name: "",
     avatar: "",
@@ -12,6 +12,19 @@ function RegisterModal({ isOpen, onClose, onRegister }) {
 
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+  if (isOpen) {
+    setValues({
+      name: "",
+      avatar: "",
+      email: "",
+      password: "",
+    });
+    setErrors({});
+    setIsValid(false);
+  }
+}, [isOpen]);
 
   const handleChange = (e) => {
     const { name, value, validationMessage, validity } = e.target;
@@ -29,10 +42,16 @@ function RegisterModal({ isOpen, onClose, onRegister }) {
   return (
     <ModalWithForm
       title="Sign Up"
+       buttonText="Sign up"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
       isValid={isValid}
+       extraAction={
+    <button type="button" className="modal__link" onClick={onLoginClick}>
+      or Log in
+    </button>
+  }
     >
       <label className="modal__label">
         Email*
@@ -87,22 +106,6 @@ function RegisterModal({ isOpen, onClose, onRegister }) {
         />
         <span className="modal__error">{errors.avatar}</span>
       </label>
-
-      <div className="modal__footer modal__footer_type_register">
-        <button
-          type="submit"
-          className={`modal__button modal__button_type_register ${
-            !isValid ? "modal__button_disabled" : ""
-          }`}
-          disabled={!isValid}
-        >
-          Next
-        </button>
-
-        <button type="button" className="modal__link">
-          or Log in
-        </button>
-      </div>
     </ModalWithForm>
   );
 }

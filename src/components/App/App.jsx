@@ -1,24 +1,24 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "./App.css";
-import { coordinates, APIkey } from "../../utils/constants";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ItemModal from "../ItemModal/ItemModal";
-import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
-import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import Profile from "../Profile/Profile";
 import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
-import { deleteItem, getItems, addItem } from "../../utils/api";
-import auth from "../../utils/auth";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import Profile from "../Profile/Profile";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import { coordinates, APIkey } from "../../utils/constants";
+import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
+import { deleteItem, getItems, addItem } from "../../utils/api";
+import auth from "../../utils/auth";
 import * as api from "../../utils/api";
+import "./App.css";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -53,7 +53,7 @@ function App() {
   };
 
   const closeActiveModal = () => {
-    setActiveModal(""); 
+    setActiveModal("");
   };
 
   const closeOnEvent = (event) => {
@@ -75,30 +75,29 @@ function App() {
   }, [activeModal]);
 
   const handleSignOut = () => {
-    localStorage.removeItem("jwt"); 
+    localStorage.removeItem("jwt");
     setIsLoggedIn(false); //
-    setCurrentUser({}); 
-    
+    setCurrentUser({});
   };
 
- const handleCardLike = ({ _id, likes }) => {
-  const token = localStorage.getItem("jwt");
-  const isLiked = likes.some((id) => id === currentUser._id);
+  const handleCardLike = ({ _id, likes }) => {
+    const token = localStorage.getItem("jwt");
+    const isLiked = likes.some((id) => id === currentUser._id);
 
-  const apiCall = !isLiked
-    ? api.addCardLike(_id, token)
-    : api.removeCardLike(_id, token);
+    const apiCall = !isLiked
+      ? api.addCardLike(_id, token)
+      : api.removeCardLike(_id, token);
 
-  apiCall
-    .then((updatedCard) => {
-      setClothingItems((cards) =>
-        cards.map((item) => (item._id === _id ? updatedCard : item))
-      );
-    })
-    .catch((err) => console.log("Like toggle error:", err));
-};
+    apiCall
+      .then((updatedCard) => {
+        setClothingItems((cards) =>
+          cards.map((item) => (item._id === _id ? updatedCard : item))
+        );
+      })
+      .catch((err) => console.error("Like toggle error:", err));
+  };
 
-const handleRegister = ({ name, avatar, email, password }) => {
+  const handleRegister = ({ name, avatar, email, password }) => {
     auth
       .register({ name, avatar, email, password })
       .then((user) => {
@@ -239,7 +238,9 @@ const handleRegister = ({ name, avatar, email, password }) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Failed to fetch weather data:", err);
+      });
   }, []);
 
   useEffect(() => {
@@ -247,7 +248,9 @@ const handleRegister = ({ name, avatar, email, password }) => {
       .then((data) => {
         setClothingItems(data);
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Failed to fetch clothing items:", err);
+      });
   }, []);
 
   return (
@@ -279,7 +282,8 @@ const handleRegister = ({ name, avatar, email, password }) => {
                     isMobileMenuOpened={isMobileMenuOpened}
                     isSmallScreen={isSmallScreen}
                     clothingItems={clothingItems}
-                    onCardLike={handleCardLike}
+                    handleCardLike={handleCardLike}
+                    isLoggedIn={isLoggedIn}
                   />
                 }
               />
@@ -329,9 +333,10 @@ const handleRegister = ({ name, avatar, email, password }) => {
             onConfirm={handleCardDelete}
           />
           <RegisterModal
-            isOpen={activeModal === "register"} 
+            isOpen={activeModal === "register"}
             onClose={closeAllModals}
             onRegister={handleRegister}
+            onLoginClick={handleLoginClick}
           />
           <LoginModal
             isOpen={activeModal === "login"}
@@ -339,6 +344,7 @@ const handleRegister = ({ name, avatar, email, password }) => {
             onLogin={handleLogin}
             passwordError={passwordError}
             setPasswordError={setPasswordError}
+            onSignupClick={handleSignUpClick}
           />
           <EditProfileModal
             isOpen={isEditProfileModalOpen}
