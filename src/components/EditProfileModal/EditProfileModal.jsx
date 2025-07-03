@@ -6,17 +6,20 @@ function EditProfileModal({ isOpen, onClose, onEditProfile, currentUser }) {
   const [values, setValues] = useState({ name: "", avatar: "" });
 
   useEffect(() => {
-  if (isOpen) {
-    setValues({ name: "", avatar: "" }); 
-  }
-}, [isOpen]);
+    if (isOpen && currentUser) {
+      setValues({
+        name: currentUser.name || "",
+        avatar: currentUser.avatar || "",
+      });
+    }
+  }, [isOpen, currentUser]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues((prev) => ({ ...prev, [name]: value }));
   };
 
-const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     onEditProfile(values);
   };

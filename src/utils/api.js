@@ -92,5 +92,6 @@ export {
   getUserInfo,
   addCardLike,
   removeCardLike,
+  request
  
 };

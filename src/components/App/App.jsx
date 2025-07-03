@@ -14,7 +14,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { coordinates, APIkey } from "../../utils/constants";
-import { getWeather, filterWeatherData } from "../../utils/weatherAPI";
+import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { deleteItem, getItems, addItem } from "../../utils/api";
 import auth from "../../utils/auth";
 import * as api from "../../utils/api";
@@ -149,7 +149,9 @@ function App() {
       })
       .catch((err) => {
         console.error("Token invalid or expired:", err);
+        localStorage.removeItem("jwt");
         setIsLoggedIn(false);
+        setCurrentUser({});
       });
   }, []);
 
