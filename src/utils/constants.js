@@ -61,7 +61,6 @@ export const weatherOptions = [
     condition: "storm",
     url: new URL("../assets/night/stormy.png", import.meta.url).href,
   },
-
 ];
 
 /*export const defaultClothingItems = [
@@ -104,8 +103,13 @@ export const weatherOptions = [
 ];*/
 
 export const coordinates = {
-  latitude:  41.335869,
+  latitude: 41.335869,
   longitude: -75.52022,
 };
 
 export const APIkey = "6ff6ccbc7253d666f1268af977203df6";
+
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.btwdwr-demo.jumpingcrab.com"
+    : "http://localhost:3001";

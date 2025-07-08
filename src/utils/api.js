@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3001";
+import { baseUrl } from "../utils/constants";
 
 function checkResponse(res) {
   if (res.ok) {
@@ -65,9 +65,9 @@ function getUserInfo(token) {
 
 function addCardLike(id, token) {
   return request(`${baseUrl}/items/${id}/likes`, {
-    method: 'PUT',
+    method: "PUT",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
   });
@@ -75,9 +75,9 @@ function addCardLike(id, token) {
 
 function removeCardLike(id, token) {
   return request(`${baseUrl}/items/${id}/likes`, {
-    method: 'DELETE',
+    method: "DELETE",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
   });
@@ -92,6 +92,5 @@ export {
   getUserInfo,
   addCardLike,
   removeCardLike,
-  request
- 
+  request,
 };

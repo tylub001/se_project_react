@@ -272,6 +272,8 @@ function App() {
               toggleMobileMenu={toggleMobileMenu}
               isMobileMenuOpened={isMobileMenuOpened}
               isSmallScreen={isSmallScreen}
+              onEditProfileClick={handleEditProfileClick}
+              onSignOut={handleSignOut}
             />
 
             <Routes>

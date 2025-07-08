@@ -1,7 +1,5 @@
-import { request } from './api'
-
-const baseUrl = "http://localhost:3001"; 
-
+import { request } from "./api";
+import { baseUrl } from "../utils/constants";
 
 const register = ({ name, avatar, email, password }) => {
   return request(`${baseUrl}/signup`, {
@@ -10,7 +8,7 @@ const register = ({ name, avatar, email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  })
+  });
 };
 
 const login = ({ email, password }) => {
@@ -20,7 +18,7 @@ const login = ({ email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  })
+  });
 };
 
 const checkToken = (token) => {
@@ -30,7 +28,7 @@ const checkToken = (token) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  })
+  });
 };
 
 const auth = {

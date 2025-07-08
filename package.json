@@ -1,5 +1,5 @@
 {
-  "homepage": "https://tylub001.github.io/se_project_react/",
+  "homepage": "https://btwdwr-demo.jumpingcrab.com",
   "name": "se-project-react",
   "private": true,
   "version": "0.0.0",
@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && scp -r ./dist/* tylub001@btwdwr-demo.jumpingcrab.com:/home/tylub001/frontend"
   },
   "dependencies": {
     "react": "^18.3.1",

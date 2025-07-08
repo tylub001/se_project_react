@@ -1,1 +1,15 @@
+@media screen and (max-width: 768px) {
+  .sidebar__edit-btn {
+    display: flex;
 
+    background-color: transparent;
+
+    justify-self: center;
+  }
+
+  .sidebar__signout-btn {
+    background-color: transparent;
+    justify-self: center;
+    display: flex;
+  }
+}

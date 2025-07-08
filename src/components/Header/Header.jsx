@@ -15,6 +15,8 @@ function Header({
   isLoggedIn,
   onLoginClick,
   onSignupClick,
+  onEditProfileClick,
+  onSignOut
 }) {
   const currentUser = useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString("default", {
@@ -70,7 +72,7 @@ function Header({
           <img className="menu__close-icon" src={closeDark} alt="close" />
         </button>
         <ul className="menu__list">
-          {isLoggedIn && (
+          {isLoggedIn ? (
             <>
               <li className="menu__container">
                 <p className="menu__username">{currentUser?.name}</p>
@@ -84,14 +86,37 @@ function Header({
                 >
                   + Add clothes
                 </button>
+                <button
+                  className="sidebar__edit-btn"
+                  type="button"
+                  onClick={onEditProfileClick}
+                >
+                  Change profile data
+                </button>
+                <button
+                  className="sidebar__signout-btn"
+                  type="button"
+                  onClick={onSignOut}
+                >
+                  Log out
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <button className="menu__signup-btn" onClick={onSignupClick}>
+                  Sign Up
+                </button>
+              </li>
+              <li>
+                <button className="menu__login-btn" onClick={onLoginClick}>
+                  Log In
+                </button>
               </li>
             </>
           )}
-          <li>
-            <div className="profile__toggleswitch">
-              <ToggleSwitch />
-            </div>
-          </li>
+        
         </ul>
       </nav>
 
